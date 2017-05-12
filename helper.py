@@ -47,30 +47,29 @@ def get_range_dates(mode):
     return []
 
   curr_date = datetime.now()
-  
+
   ranges = []
 
   #Will get recent 8 days
   for i in range(0, 8):
-    ranges.append( curr_date.strftime("%Y%m%d") ) 
+    ranges.append( curr_date.strftime("%Y%m%d") )
     curr_date = curr_date - timedelta(1)
-    
+
   return ranges
 
 def get_config():
-  
+
   try:
-    
+
     with open(config_file_path, 'r') as f:
       config_obj = json.loads(f.read())
-    
+
     return config_obj
 
   except Exception, e:
     return None
 
 def save_config(config):
-  
+
   with open(config_file_path, 'wb') as f:
     f.write( json.dumps(config) )
-
